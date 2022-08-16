@@ -1,0 +1,361 @@
+{% extends 'index.html'%}
+{%load static%}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Basic Grid</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'styles/js/cart.js' %}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+        body {
+            background: white;
+            color: #fff;
+            font-family: 'Noto Sans', sans-serif;
+            padding: 10px;
+        }
+
+        .cardi {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #353535;
+            color: #fff;
+            box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+            width: 100%;
+            border-radius: 4px;
+            transition: all 500ms;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+
+        .basic-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+        .card {
+            color: transparent;
+        }
+
+        .cards {
+            color: transparent;
+            width: 300px;
+        }
+
+        .card {
+            box-shadow: 20px 20px 80px -44px #000;
+            transition: .5s ease-in-out;
+            cursor: pointer;
+            color: black;
+            border-radius: 15px;
+        }
+
+        .card h5 {
+            color: green;
+        }
+
+        model-viewer {
+            background-color: #000000;
+            background-image: linear-gradient(147deg, #000000 0%, #434343 100%);
+            border-radius: 15px;
+        }
+
+        .home-img3 {
+            width: 100%;
+            height: 250px;
+            padding-bottom: 5px;
+            border-radius: 15px;
+        }
+
+        .home-img33 {
+            width: 600px;
+            height: 550px;
+            border-radius: 15px;
+        }
+
+        @media screen and (min-width: 1200px) and (max-width: 1250px) {
+            .home-img33 {
+                width: 500px;
+                height: 500px;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            .home-img33 {
+                width: 400px;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (min-width: 770px) and (max-width: 991px) {
+            .home-img33 {
+                width: 500px;
+                height: 500px;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (min-width: 500px) and (max-width: 700px) {
+            .home-img33 {
+                width: 400px !important;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+        @media screen and (min-width: 701px) and (max-width: 767px) {
+            .home-img33 {
+                width: 400px !important;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 968px) {
+            .home-img33 {
+                width: 300px !important;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+        @media screen and (min-width: 969px) and (max-width: 991px) {
+            .home-img33 {
+                width: 300px !important;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+        @media screen and (min-width: 992px) and (max-width: 1192px) {
+            .home-img33 {
+                width: 400px !important;
+                height: 400px;
+                border-radius: 15px;
+            }
+        }
+        .new{
+            width: 500px;
+            height: 500px;
+        }
+        @media screen and (min-width: 400px) and (max-width: 499px) {
+            .home-img33 {
+                width: 300px;
+                height: 300px;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (min-width: 250px) and (max-width: 399px) {
+            .home-img33 {
+                width: 250px;
+                height: 250px;
+                border-radius: 15px;
+            }
+        }
+
+        @media(max-width:61em) {
+            .nav-tabs {
+                padding-top: 10px;
+            }
+        }
+    </style>
+
+
+
+
+</head>
+
+<body style="background-color: #082835;">
+    <hr style="color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown1"
+            aria-controls="navbarNavDropdown1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>{% for j in man %}
+        <div class="collapse navbar-collapse justify-content-start" id="navbarNavDropdown1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">{{j.category_name}}</a>
+                </li>&nbsp;
+                {% for i in sub %}
+                
+                {% if i.category_id == j.cat_id %}
+                <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page"
+                        href="{% url 'sub' i.id %}">{{i.subcategory}}</a>
+                </li>&nbsp;
+                {% endif %}
+                {% endfor %}
+                
+            </ul>
+        </div>
+        {% endfor %}
+    </nav>
+
+    <div class="container mt-4 d-flex mb-5">
+        <div class="row">
+            {% for k in man1 %}
+            <div class="col-md-4 mt-5 cards">
+                <div class="card">
+                    <model-viewer class="home-img3" src="{{ k.gib.url }}" alt="New York" ar
+                        ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate
+                        camera-controls></model-viewer>
+                    <div class="card-body">
+                        <h2 class="card-title">{{k.modelname}}</h2>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text">{{k.description}}</p>
+                            {% if k.price == '$0' %}
+                            <h5 class="card-text mr-4">Free</h5>
+                            {% else %}
+                            <h5 class="card-text mr-4">{{k.price}}</h5>
+                            {% endif %}
+                        </div>
+                        <a href="" class="card-link text-decoration-none" data-toggle="modal"
+                            data-target="#modalId{{k.id}}">More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <!-- Modal Code -->
+    {% for k in man1 %}
+    <div class="modal fade" id="modalId{{k.id}}">
+        <section class="h-75" style="background-color: #eee;">
+            <div class="container pt-2">
+                <div class="row d-flex justify-content-center align-items-center h-75">
+                    <div class="col">
+                        <div class="card shopping-cart" style="border-radius: 15px;">
+                            <div class="card-body text-black">
+
+                                <div class="row">
+                                    <div class="col-md-6 px-5 py-4">
+
+                                        <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
+
+                                        <div class="d-flex align-items-center mb-5">
+                                            <div class="flex-shrink-0">
+                                                <div class="card">
+                                                    <model-viewer class="home-img33 new" src="{{ k.gib.url }}"
+                                                        alt="New York" ar ar-modes="webxr scene-viewer quick-look"
+                                                        environment-image="neutral" auto-rotate camera-controls>
+                                                    </model-viewer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 px-5 py-4">
+
+                                        <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Payment</h3>
+
+                                        <form class="mb-5">
+                                            <div class="cardi-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <table class="table table-responsive text-dark"
+                                                            style="font-size: 25px;">
+                                                            <tr>
+                                                                <td>Model Name</td>
+                                                                <td>{{k.modelname}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Description</td>
+                                                                <td>{{k.description}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Type</td>
+                                                                <td>{{k.types}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Format</td>
+                                                                <td>{{k.format}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Model Type</td>
+                                                                <td>{{k.modeltype}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Category</td>
+                                                                <td>{{k.cat_id.category_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                        </table>
+                                                        <hr class="mb-4"
+                                                            style="height: 2px; background-color: #1266f1; opacity: 1;">
+                                                        <div class="d-flex justify-content-between p-2 mb-2"
+                                                            style="background-color: #e1f5fe;">
+                                                            <h5 class="fw-bold mb-0">Total:</h5>
+                                                            <h5 class="fw-bold mb-0">{{k.price}}</h5>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <!-- <button type="button"  class="btn btn-primary btn-block btn-lg">BUY</button> -->
+                                            <button data-product="{{k.id}}" data-action="add" class="btn btn-primary btn-block btn-lg add-btn update-cart">TO
+                                                CART</button>
+                                            <br>
+                                            <h5 class="fw-bold mb-5" style="padding-top: 10px;">
+                                                <a href="{% url 'new_page' k.category_id %}"><i
+                                                        class="fas fa-angle-left me-2"></i>Back to shopping</a>
+                                            </h5>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endfor %}
+    <script>
+
+        $(document).ready(function () {
+            $(".card-link").click(function () {
+                $(".rounded").attr("src", $(this).parent().siblings().attr("Src"));
+                $(".product_name").text($(this).siblings("h2").text());
+                $(".product_desc").text($(this).siblings("div").find("p:nth(0)").text());
+                $(".product_price").text($(this).siblings("div").find("p:nth(1)").text());
+            });
+            $(window).resize(function () {
+                if ($(window).width() < 600) {
+                    $(".modal-content").css("transform", "scaleX(1)");
+                }
+                else {
+                    $(".modal-content").css("transform", "scaleX(1.4)");
+                }
+            });
+        });
+
+
+    </script>
+
+    
+</body>
+{% endblock %}

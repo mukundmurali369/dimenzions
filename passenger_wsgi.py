@@ -1,0 +1,1 @@
+from dimenz.wsgi import application

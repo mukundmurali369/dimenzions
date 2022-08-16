@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>DimenZions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+            text-decoration: none;
+        }
+
+        .navbar {
+            background-color: #082835;
+        }
+
+        .dropdown-item {
+            color: white;
+            background-color: #082835;
+        }
+
+        .dropdown-item:hover {
+            color: orange;
+            background-color: #082835;
+        }
+
+        section {
+            display: flex;
+            align-self: center;
+            background: #082835;
+        }
+
+        .contra {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-rows: minmax(100px, auto);
+            margin: 10px;
+            margin-top: 10px;
+            grid-auto-flow: dense;
+            grid-gap: 10px;
+        }
+
+        .contra .box {
+            background: #082835;
+            border-radius: 10px;
+            width: 250px;
+            height: 250px;
+            display: grid;
+            text-align: center;
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .contra .box:hover {
+            background: black;
+
+        }
+
+        .contra .box img {
+            position: grid;
+
+        }
+
+        .image__overlay {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .image__overlay--blur {
+            backdrop-filter: blur(5px);
+        }
+
+        .image__overlay>* {
+            transform: translateY(20px);
+            transition: transform 0.25s;
+        }
+
+        .image__overlay:hover {
+            opacity: 1;
+        }
+
+        .image__overlay:hover>* {
+            transform: translateY(0);
+        }
+
+        .image__title {
+            font-size: 1.75em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contra .box:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(2) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .contra .box:nth-child(3) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .contra .box:nth-child(4) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .contra .box:nth-child(5) {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(7) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(8) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .contra .box:nth-child(10) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(12) {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(15) {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(16) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .contra .box:nth-child(17) {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .contra .box:nth-child(20) {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        a {
+            text-decoration: none;
+            text-align: center;
+        }
+
+        @media (max-width: 991px) {
+            .contra {
+                grid-template-columns: repeat(auto-fil, minmax(50%, 1fr));
+                grid-template-rows: minmax(auto, auto);
+            }
+
+            .contra .box {
+                grid-column: unset !important;
+                grid-row: unset !important;
+            }
+        }
+
+
+        .first {
+            background-image: url('/static/dimen.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 90vh;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        /* Medium screens */
+        @media screen and (min-width: 600px) {
+            .card-tall {
+                grid-row: span 2 / auto;
+            }
+
+            .card-wide {
+                grid-column: span 2 / auto;
+            }
+        }
+
+        .conf {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body style="background-color: #082835;">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid ">
+                <a class="navbar-brand text-light" href="#">DimenZions</a>
+                <li style="list-style-type: none;" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        3D Models
+                    </a>
+                    <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink"
+                        style="background-color: #082835;">
+                        <li>
+
+                            {% for k in it %}
+                                <a class="dropdown-item " href="{% url 'new_page' k.cat_id %}">
+                                    {{k.category_name}}</a>
+                            {% endfor %}
+
+                        </li>
+                    </ul>
+                </li>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end " id="navbarNavDropdown2">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href=""><b>{{member.fullname}}</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{% url 'admin_login' %}">Login/Signin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 first">
+                    <div class="row">
+                        <div class="col-md-6 col-9 offset-md-3 offset-2" style="margin-top: 150px;">
+                            <h1 style="text-align: center;color: white;">DimenZions</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-9 offset-md-3 offset-2">
+                            <h3 style="text-align: center;color: white;">Get exciting 3D models from here</h3>
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'search' %}">
+                        {% csrf_token %}
+                    <div class="row ">
+                        <div class="col-md-5 col-9 mx-auto">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" id="myInput" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="container mt-2">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active text-light" data-bs-toggle="tab" href="{% url 'home' %}">Home</a>
+                </li>
+
+                {% for k in category %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" data-bs-toggle="tab"
+                        href="#{{k.category_name}}">{{k.category_name}}</a>
+                </li>
+                {% endfor %}
+
+            </ul>
+            <hr style="color: white;">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div class="row">
+                        {% for k in category %}
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                            <section>
+                                <div class="contra">
+                                    <div class="box"
+                                        style="background-image: url(media/{{k.category_logo}});background-size: cover;">
+                                        <a class="image__overlay image__overlay--blur"
+                                            href="{% url 'new_page' k.cat_id %}">
+                                            <div class="content">
+                                                <div>
+                                                    <div class="image__title">{{k.category_name}}<span
+                                                            style="position: absolute; font-size: 50px;color: skyblue;margin-top: -18px; margin-left: 5px;">></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                       
+                    </div>
+                </div>
+
+               
+
+                <div class="tab-pane" id="{{k.category_name}}">
+                    <section>
+                        <div class="container contra">
+                            <div class="box"
+                                style="background-image: url(media/{{k.category_logo}});background-size: cover;">
+                                <a class="image__overlay image__overlay--blur" href="{% url 'new_page' k.cat_id %}">
+                                    <div class="content">
+                                        <div>
+                                            <div class="image__title">{{k.category_name}}<span
+                                                    style="position: absolute; font-size: 50px;color: skyblue;margin-top: -18px; margin-left: 5px;">></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="container conf">
+            <div class="row">
+                <div class="col-12">
+                    <h1 style="color:white">Complete Confidence</h1>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                    <div
+                        style="height: 125px;width: 125px; background-color: #11303d; border-radius: 40%;padding:12px ">
+
+                        <span class="iconify" data-icon="arcticons:priceconverter" style="color:gold;"
+                            data-width="100"></span>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col">
+                            <br>
+                            <h3 style="color: white;">Best Price Guarantee</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p style="line-height: 30px;color: #9eb9c4;">
+                                Buy with confidence - we guarantee that you won't find any model
+                                on our site selling for a lower price on any other marketplace.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                    <div
+                        style="height: 125px;width: 125px; background-color: #11303d; border-radius: 40%;padding:12px ">
+
+                        <span class="iconify" data-icon="arcticons:priceconverter" style="color:gold;"
+                            data-width="100"></span>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col">
+                            <br>
+                            <h3 style="color: white;">Simple Returns</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p style="line-height: 30px;color: #9eb9c4;">
+                                Did you purchase a model that doesn’t work for you? No problem,
+                                we’ll give you a quick refund or store credit so you can find a model that works for
+                                your
+                                project.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                    <div
+                        style="height: 125px;width: 125px; background-color: #11303d; border-radius: 40%;padding:12px ">
+
+                        <span class="iconify" data-icon="arcticons:priceconverter" style="color:gold;"
+                            data-width="100"></span>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col">
+                            <br>
+                            <h3 style="color: white;">24/7 Support</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p style="line-height: 30px;color: #9eb9c4;">
+                                We’re here to help when you need us. Professionals
+                                are ready to assist you every hour of every day with your 3D model purchase via chat or
+                                support ticket.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                    <div
+                        style="height: 125px;width: 125px; background-color: #11303d; border-radius: 40%;padding:12px ">
+
+                        <span class="iconify" data-icon="arcticons:priceconverter" style="color:gold;"
+                            data-width="100"></span>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col">
+                            <br>
+                            <h3 style="color: white;">World Class Protection</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p style="line-height: 30px;color: #9eb9c4;">
+                                Dimensions leads the industry with up to $1,000,000 in
+                                indemnification available on your 3D model purchases.
+                                If there’s ever any problem with the purchase, we’ll be there to help.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/b0261d4fc2.js"></script>
+        <script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
+        <br><br>
+
+    </body>
+
+    <script>
+
+        $(document).ready(function(){
+          $("#myList li").hide();
+        
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            if (value !== '' ) {
+            $("#myList li").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });   
+            } else {
+              $("#myList li").hide();   
+            }    
+          });
+        });
+        
+           
+           
+         </script>
+    
+</html>

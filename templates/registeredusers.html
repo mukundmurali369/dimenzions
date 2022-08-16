@@ -1,0 +1,75 @@
+{% extends 'admin_base.html' %}  {% block body %}
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Registered Users</title>
+
+  </head>
+  <body>
+      <!-- partial -->
+          <div class="row">
+            <div class="col-12 p-0">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Registered Users</h4>
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                      <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search User" style="width:100%"/>
+                    </div>
+                  </div><br>
+                  <div class="table-responsive">
+                    <table  class="table table-striped">
+                      <thead>
+                        <tr class="header">
+                        
+                          
+                          <div class="col-md-lg-6 ">
+                            <th>Sl No.</th>
+                          <th>Full Name</th>
+                          <th>Username</th>
+                          <th>E-mail</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+
+                      {% for i in use %}
+                      <tbody id="myTable">
+                        <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{i.fullname}}</td>
+                          <td id="username2">{{i.username}}</td>
+                          <td>{{i.email}}</td>
+                          <td>
+                            <a href="{% url 'delete' i.reg_id %}">
+                                <button type="button" class="btn btn-outline-danger">
+                                    <i class="icon-trash menu-icon"></i>
+                                  Delete
+                                </button>
+                              </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                      {% endfor %}
+                    </table>
+                  </div>
+                  </div>
+                  <script>
+                    $(document).ready(function(){
+                      $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                      });
+                    });
+                    </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </body>
+</html>
+{% endblock %}

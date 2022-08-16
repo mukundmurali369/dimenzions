@@ -1,0 +1,175 @@
+{% extends 'admin_base.html' %} {% block body %}
+
+<div class="container">
+    <form method="post" class="post-form" action="createmodel" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group row">
+            <div class="col-md-10 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body ml-5">
+                        <br /><br />
+                        <h4 class="card-title">Add Model</h4>
+                        <br /><br />
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Model
+                                Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="modelname" name="modelname" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" rows="4" placeholder="description"
+                                    name="description" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Upload .gib
+                                model</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="gib" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-6">
+                                <span style="position: absolute; margin-left: 10px; margin-top: 13px;">$</span>
+                                <input type="number" name="price" id="price" class="form-control w-100" style="padding-left: 20px;" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Type</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control w-100" placeholder="type" name="types" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label class="form-check-label" for="inlineRadio1">Model Format</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="col-md-4">
+                                    <input class="form-check-input" type="radio" name="format" id="" value="option2" required/>
+                                </div>
+                                <label class="form-check-label" for="inlineRadio2">.fbx</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="col-md-4">
+                                    <input class="form-check-input" type="radio" name="format" id="" value="option3" required/>
+                                </div>
+                                <label class="form-check-label" for="inlineRadio3">.obj</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="col-md-4">
+                                    <input class="form-check-input" type="radio" name="format" id="" value="option3" required/>
+                                </div>
+                                <label class="form-check-label" for="inlineRadio3">.3dx</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label class="form-check-label" for="inlineRadio1">Model Type</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="col-md-3">
+                                    <input class="form-check-input" type="radio" name="modeltype" id=""
+                                        value="option2" onclick="myFunction()" required/>
+                                </div>
+                                <label class="form-check-label" for="inlineRadio2" >Free</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="col-sm-3">
+                                    <input class="form-check-input" type="radio" name="modeltype" id=""
+                                        value="option3" required/>
+                                </div>
+                                <label class="form-check-label" for="inlineRadio3">Paid</label>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="form-check-label" for="inlineRadio2">Category</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-select w-100" id="" aria-label="Default select example" name="category">
+                                    <option selected>Car</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="form-check-label" for="inlineRadio2">Category</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control w-100" id="inlineRadio2" aria-label="Default select example"
+                                    name="category" required>
+                                    <option value="">
+                                        --select--
+                                    </option>
+                                    {% for i in var %}
+                                    <option value="{{i.cat_id}}">{{i.category_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="form-check-label" for="inlineRadio2">Sub Category</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control w-100" id="inlineRadio2" aria-label="Default select example"
+                                    name="subcategory" required>
+                                    <option value="">
+                                        --select--
+                                    </option>
+                                    {% for i in sub %}
+                                    <option value="{{i.id}}">{{i.subcategory}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Upload .fbx
+                                model</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="fbx" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary
+                                    w-100">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div> 
+<script>
+    function myFunction(){
+    var price = document.getElementById("price");
+    document.getElementById('price').value = 0;
+  }
+</script>
+{% endblock%}

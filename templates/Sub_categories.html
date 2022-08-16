@@ -1,0 +1,127 @@
+{% extends 'admin_base.html' %} {% load static%} {% block body %}
+<style>
+    .icon-trash {
+        color: rgb(221, 20, 20) !important;
+    }
+</style>
+
+<div class="content-wrapper">
+    <h2>Sub Category</h2><br>
+    <div class="row">
+
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h3 style="text-align: center;">Add Sub Category</h3><br>
+                    <form action="add_subcategory" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <form class="forms-sample">
+                            <div class="form-group row">
+                               
+                                  
+                                <label for="exampleInputEmail2" class="col-md-4  col-form-label">Category Name</label>
+                                <div class="col-md-8">
+                                <select class="form-control" id="inlineRadio2" aria-label="Default select example"
+                                    name="category" required>
+                                    <option value="">
+                                        --Select Category--
+                                    </option>
+                                    {% for j in caty %}
+                                    <option value="{{j.cat_id}}">{{j.category_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputEmail2" class="col-md-4  col-form-label">Sub Category Name</label>
+                                <div class="col-md-8">
+                                    <input type="test" class="form-control" name="subcategory" placeholder="Sub Category" id="exampleInputEmail2" required>
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 grid-margin stretch-card ">
+            <div class="card">
+                <div class="card-body">
+                    <h3 style="text-align: center;">Existing Sub Categories</h3><br>
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <input type="text" class="form-control text-dark" id="myInput" onkeyup="myFunction()" name="search" autocomplete="off" placeholder="Search by Name">
+                                <div class="table-responsive">
+                                    <table class="table" id="myTable">
+                                        <tbody>
+                                            {% for j in subcate %}
+                                            <tr>
+                                               
+                                                <td>
+                                                    {{j.subcategory}}
+                                                </td>
+
+
+                                                <td>
+                                                    <a href="subcat_delete/{{j.id}}"> <i class="icon-trash icon-danger icon-md menu-icon"></i></a>
+                                                </td>
+
+
+                                            </tr>
+
+                                            {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+{% endblock body %}

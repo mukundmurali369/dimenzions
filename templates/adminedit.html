@@ -1,0 +1,231 @@
+{% extends 'admin_base.html' %}
+{% load static%} 
+{% block body %}
+
+{% for i in item %}
+<form method="post" class="post-form" action="{% url 'modeledit' i.id %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group row">
+
+    <div class="card card-body col-md-10 col-lg-10 col-12  stretch-card offset-lg-1" style="margin-top: 65px;">
+
+
+      <h1 class="card-title" style="font-size: 27px;">Edit Model</h1>
+      <br /><br />
+
+
+      <div class="form-group row">
+        <label for="exampleInputUsername2" class="col-md-3 col-form-label" style="font-size: 20px;">Model
+          Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="exampleInputUsername2" placeholder="modelname" name="modelname"
+            value="{{i.modelname}}" style="font-size: 20px;" />
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="exampleInputEmail2" style="font-size: 20px;" class="col-md-3 col-form-label">Description</label>
+        <div class="col-md-9">
+          <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="description"
+            style="font-size: 20px;" name="description">{{i.description}}</textarea>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="" class="col-md-3 col-form-label" style="font-size: 20px;">Upload .gib model</label>
+        <div class="col-md-9">
+          <input type="file" name="gib" class="form-control" style="border: none;" />
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="exampleInputPassword2" class="col-md-3 col-form-label" style="font-size: 20px;">Price</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="exampleInputPassword2" style="font-size: 20px;"
+            placeholder="price" name="price" value="{{i.price}}" />
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="exampleInputConfirmPassword2" class="col-md-3 col-form-label" style="font-size: 20px;">Type</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control w-100" id="exampleInputConfirmPassword2" placeholder="type"
+            style="font-size: 20px;" name="types" value="{{i.types}}" />
+        </div>
+      </div>
+
+      {% if i.format == '.fbx' %}
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label class="form-check-label" for="inlineRadio1" style="font-size: 20px;">Model Format</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio2" value=".fbx" checked />
+          </div>
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">.fbx</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".obj" />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.obj</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".3dx" />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.3dx</label>
+        </div>
+      </div>
+
+      {% endif %}
+
+      {% if i.format == '.obj' %}
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label class="form-check-label" for="inlineRadio1" style="font-size: 20px;">Model Format</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio2" value=".fbx" />
+          </div>
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">.fbx</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".obj" checked />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.obj</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".3dx" />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.3dx</label>
+        </div>
+      </div>
+
+      {% endif %}
+      {% if i.format == '.3dx' %}
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label class="form-check-label" for="inlineRadio1" style="font-size: 20px;">Model Format</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio2" value=".fbx" />
+          </div>
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">.fbx</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".obj" />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.obj</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-4">
+            <input class="form-check-input" type="radio" name="format" id="inlineRadio3" value=".3dx" checked />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">.3dx</label>
+        </div>
+      </div>
+
+      {% endif %}
+
+
+      {% if i.modeltype == 'free' %}
+
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label class="form-check-label" for="inlineRadio1" style="font-size: 20px;">Model Type</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-3">
+            <input class="form-check-input" type="radio" name="modeltype" id="inlineRadio2" value="free" checked />
+          </div>
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">Free</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-sm-3">
+            <input class="form-check-input" type="radio" name="modeltype" id="inlineRadio3" value="paid" />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">Paid</label>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if i.modeltype == 'paid' %}
+
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label class="form-check-label" for="inlineRadio1" style="font-size: 20px;">Model Type</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-md-3">
+            <input class="form-check-input" type="radio" name="modeltype" id="inlineRadio2" value="free" />
+          </div>
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">Free</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="col-sm-3">
+            <input class="form-check-input" type="radio" name="modeltype" id="inlineRadio3" value="paid" checked />
+          </div>
+          <label class="form-check-label" for="inlineRadio3" style="font-size: 20px;">Paid</label>
+        </div>
+      </div>
+      {% endif %}
+
+
+
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <label class="form-check-label" for="inlineRadio2" style="font-size: 20px;">Category</label>
+        </div>
+        <div class="col-sm-6">
+          <select class="form-select w-100" id="inlineRadio2" aria-label="Default select example" style="height: 40px;"
+            name="category_name">
+            <option value="{{i.cat_id_id}}">{{i.cat_id.category_name}}
+
+            </option>
+            {% for j in viva %}
+            <option value="{{j.cat_id}}">{{j.category_name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+      </div>
+
+
+      <div class="form-group row">
+        <label for="" class="col-sm-3 col-form-label" style="font-size: 20px;">Upload .fbx model</label>
+        <div class="col-sm-6">
+          <input type="file" name="fbx" class="form-control" style="border: none;" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn-primary  w-100">
+            Submit
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</form>
+{% endfor %}
+
+{% endblock %}

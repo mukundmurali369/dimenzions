@@ -1,0 +1,70 @@
+{% extends 'admin_base.html' %} {% load static%} {% block body %}
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.26);
+    }
+</style>
+
+
+<div class="container">
+    <label for="" style="font-weight: 700;">Dashboard</label>
+    <div class="row mt-3">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body" style="height:50vh">
+                    {% for i in adm %}
+                    <p class="card-title mb-0 mt-3" style="font-weight: 600;">Welcome {{i.username}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 grid-margin ">
+            <a style="text-decoration:none">
+                <div class="card" style="height:40vh">
+
+
+                    <div class="card-body">
+
+                        <center>
+
+                            <p class="card-title mb-0 mt-5 pt-3 text-info font-weight-bold">Total Users</p>
+
+                            <p class="card-title mb-0 mt-3 text-primary">{{users}}+</p>
+
+                        </center>
+                    </div>
+
+
+                </div>
+
+            </a>
+        </div>
+
+        <div class="col-md-6 grid-margin">
+            <a class="text-decoration-none">
+                <div class="card" style="height:40vh">
+
+
+                    <div class="card-body">
+                        <center>
+                            <p class="card-title mb-0 mt-5 pt-3 text-info font-weight-bold">Total Models</p>
+
+                            <p class="card-title mb-0 mt-3 text-primary">{{models}}+</p>
+                        </center>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
+
+</div>
+</div>
+
+
+{% endblock %}

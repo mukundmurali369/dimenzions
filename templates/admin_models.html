@@ -1,0 +1,54 @@
+{%extends 'admin_base.html'%} {%load static%} {%block body%}
+
+<style>
+    .card{
+
+        border-radius: 10px;
+        background-color: rgba(107, 129, 192, 0.63);
+    }
+    .fa-tasks{
+        color: blanchedalmond;
+    }
+
+    .fa-plus-square{
+        color: blanchedalmond;
+    }
+    .background{
+        background-color: rgba(52, 197, 76, 0.63);
+
+    }
+</style>
+
+
+<div class="col-md-8 grid-margin transparent">
+    <div class="row" >
+        <div class="col-12 col-md-6 col-sm-6 mb-5 mb-lg-0  transparent">
+            <a href="admin_current_models" style="text-decoration: none">
+                <div class="card mt-5 " style="height: 180px">
+                    <div class="card-body">
+                        <h2 class="text-black">Current Models</h2>
+                        <br>
+                       <i class="fa fa-tasks icon-lg" aria-hidden="true" style="padding-left: 60%;"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-sm-6  transparent">
+            <a href="addmodel" style="text-decoration: none">
+                <div class="card background mt-5" style="height: 180px">
+                    <div class="card-body">
+                        <h2 class="text-black">Add Models</h2>
+                        <br>
+                        <i class="fa fa-plus-square icon-lg " aria-hidden="true" style="padding-left: 60%;"></i>
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+{% endblock %}

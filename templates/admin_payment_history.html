@@ -1,0 +1,101 @@
+{%extends 'admin_base.html'%} {%load static%} {%block body%}
+
+<style>
+    .Search {
+        width: 100px;
+        margin-top: 4%;
+        float: right;
+        margin-right: 5%;
+        padding-left: 3%;
+        padding-right: 3%;
+        line-height: 2;
+        border: 1px solid #6c7293;
+        color: #fff;
+        background: #0090e7;
+    }
+    
+    #tble {
+        display: none;
+    }
+    
+    label {
+        color: #6c7293;
+    }
+    
+    @media (max-width:767px) {
+        .Search {
+            margin-top: -2%;
+            float: right;
+            margin-right: 0%;
+            padding-left: 3%;
+            padding-right: 3%;
+            line-height: 2;
+        }
+    }
+</style>
+<h2 style="color: #6c7293;">Payment History</h2>
+<br>
+<div class="card">
+    <div class="card-body">
+        <form class="forms-sample" method="post" action="{% url 'payment_table' %}">
+            {% csrf_token %}
+            <div class="form-group row mt-3">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">SELECT FROM DATE</label>
+                <div class="col-12 col-md-9 ">
+                    <input type="date" name="fromdate" class="form-control " id="txtDate1" required/>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">SELECT TO DATE</label>
+                <div class="col-12 col-md-9 ">
+                    <input type="date" name="todate" class="form-control  " id="txtDate2" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div for="exampleInputEmail2" class="col-lg-11 col-form-label"></div>
+                <div class="col-lg-1">
+                    <button id="btnSearch" type="submit" class="btn btn  Search btn-sm"> Search</button>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+
+<script>
+    const targetDiv = document.getElementById("tble");
+    const btn = document.getElementById("btnSearch");
+    btn.onclick = function() {
+        if ((targetDiv.style.display = "block")) {
+            targetDiv.style.display = "block";
+        } else {
+            targetDiv.style.display !== "none";
+        }
+    };
+
+    $(function() {
+        $("#txtDate").datepicker({
+            minDate: -20,
+            maxDate: "+1M +10D"
+        });
+    });
+</script>
+<script>
+    var dtToday = new Date();
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10)
+        month = '0' + month.toString();
+    if (day < 10)
+        day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + day;
+    document.getElementById("txtDate1").setAttribute("max", maxDate);
+    document.getElementById("txtDate2").setAttribute("max", maxDate);
+</script>
+
+hello world {% endblock body %}

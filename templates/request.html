@@ -1,0 +1,77 @@
+
+{% extends 'index.html'%}
+{%load static%}
+{% block content %}
+
+
+  <link rel="stylesheet" href="{% static 'css/request.css' %}">
+<!-- partial:index.partial.html -->
+<div class="login-box">
+  <h2>Request</h2>
+  <form method="POST" action="{%  url 'savereq' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="user-box">
+      <input  style="background:transparent;" name='name' type="text"  required="" autocomplete="off">
+      <label>Name</label>
+    </div>
+    <div class="user-box">
+      <input style="background:transparent;" name='number' type="text"  required=""  autocomplete="off">
+      <label>Mobile</label>
+    </div>
+    <div class="user-box">
+        <input style="background:transparent;" name='email' type="email"  required="" autocomplete="off" >
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input style="background:transparent;" name="about" type="text"  required=""   autocomplete="off">
+        
+        <label>Tell Us About</label>
+      </div>
+      <div class="user-box">
+        <input name='image' type="file" >
+        
+        <label>Image</label>
+      </div>
+
+  <center> <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <input style="background:transparent;border:none;font-size:22px;color: #03e9f4;font-family:san-serif;" type="submit">
+    </a></center> 
+  </form>
+</div>
+<!-- partial -->
+  
+
+<script type="text/javascript">
+      
+    
+  // Find all inputs on the DOM which are bound to a datalist via their list attribute.
+var inputs = document.querySelectorAll('input[list]');
+for (var i = 0; i < inputs.length; i++) {
+// When the value of the input changes...
+inputs[i].addEventListener('change', function() {
+var optionFound = false,
+datalist = this.list;
+// Determine whether an option exists with the current value of the input.
+for (var j = 0; j < datalist.options.length; j++) {
+if (this.value == datalist.options[j].value) {
+optionFound = true;
+break;
+}
+}
+// use the setCustomValidity function of the Validation API
+// to provide an user feedback if the value does not exist in the datalist
+if (optionFound) {
+this.setCustomValidity('');
+} else {
+this.setCustomValidity('Please select a valid value.');
+}
+});
+}
+    
+    </script>
+
+    {% endblock %}

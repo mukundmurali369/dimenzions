@@ -1,0 +1,117 @@
+{% extends 'index.html'%}
+{%load static%}
+{% block content %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Grid</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+        body {
+            background: white;
+            color: #fff;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #353535;
+            color: #fff;
+            box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+            
+            width: 100%;
+            border-radius: 4px;
+            transition: all 500ms;
+            overflow: hidden;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+      
+
+        .basic-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+     
+      
+       
+       
+    </style>
+</head>
+
+<body style="background-color: #082835;">
+
+    <hr style="color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{model.gib.url}}" height="350px" width="100%">
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <br>
+                        <br>
+                        <h3>Product Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table table-responsive text-light " > 
+                                    <tr>
+                                        <td>Model Name</td>
+                                        <td>{{model.modelname}}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>{{model.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>{{model.price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>{{model.types}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Format</td>
+                                        <td>{{model.format}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model Type</td>
+                                        <td>{{model.modeltype}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>{{model.cat_id.category_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><button class="btn btn-primary"> Buy_NOW</button></a></td>
+                                        <td><a href=""><button class="btn btn-info"> Add to Cart</button></a></td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       
+    
+
+</body>
+{% endblock %}
